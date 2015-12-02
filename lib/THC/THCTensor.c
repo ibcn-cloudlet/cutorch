@@ -281,10 +281,16 @@ void THCudaTensor_resize4d(THCState *state, THCudaTensor *self, long size0, long
 
 void THCudaTensor_resize5d(THCState *state, THCudaTensor *self, long size0, long size1, long size2, long size3, long size4)
 {
-    long size[5] = {size0, size1, size2, size3, size4};
+  long size[5] = {size0, size1, size2, size3, size4};
 
   THCudaTensor_rawResize(state, self, 5, size, NULL);
 }
+
+void THCudaTensor_resizend(THCState *state, THCudaTensor *self, int nDimension, long* size)
+{
+  THCudaTensor_rawResize(state, self, nDimension, size, NULL);
+}
+
 
 void THCudaTensor_set(THCState *state, THCudaTensor *self, THCudaTensor *src)
 {
