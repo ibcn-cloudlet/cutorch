@@ -118,8 +118,10 @@ FUNCTION(SELECT_NVCC_ARCH_FLAGS out_variable)
   else()  # (${CUDA_ARCH_NAME} STREQUAL "Manual")
     SET(__cuda_arch_bin ${CUDA_ARCH_BIN})
   ENDIF()
+  STRING(REGEX MATCH "[^ ]+$" CUDA_ARCH_PTX ${__cuda_arch_bin})
 
   MESSAGE(STATUS "Compiling for CUDA architecture: ${__cuda_arch_bin}")
+  MESSAGE(STATUS "Compiling PTX code for architecture: ${CUDA_ARCH_PTX}")
 
   # remove dots and convert to lists
   STRING(REGEX REPLACE "\\." "" __cuda_arch_bin "${__cuda_arch_bin}")
